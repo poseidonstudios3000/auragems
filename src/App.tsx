@@ -129,104 +129,59 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/auragems_hero.webp"
+            alt="Luxury gemstone in Dubai apartment"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-aura-deep/40" />
+        </div>
+
         {/* Vertical Text Accent */}
-        <div className={`absolute top-1/2 -translate-y-1/2 hidden xl:block text-[10px] font-black tracking-[1em] opacity-20 uppercase vertical-text ${isRtl ? 'left-12' : 'right-12'}`}>
+        <div className={`absolute top-1/2 -translate-y-1/2 hidden xl:block text-[10px] font-black tracking-[1em] opacity-30 uppercase vertical-text text-white ${isRtl ? 'left-12' : 'right-12'}`}>
           {t.hero.accent}
         </div>
 
-        {/* Misty Background Elements */}
-        <div className="absolute inset-0 z-0">
-          <motion.div 
-            animate={{ 
-              x: [0, 50, 0],
-              y: [0, 30, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-1/4 -left-1/4 w-full h-full bg-aura-gold/5 blur-[120px] rounded-full"
-          />
-          <motion.div 
-            animate={{ 
-              x: [0, -50, 0],
-              y: [0, -30, 0],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-aura-deep/5 blur-[120px] rounded-full"
-          />
-          <div className="absolute inset-0 mist-bg opacity-60" />
-        </div>
-
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-20 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-20 relative z-10 text-center">
           <motion.div style={{ opacity, scale }}>
             <motion.div
-              initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center lg:text-left"
             >
-              <div className="inline-block px-4 py-1 rounded-full bg-aura-gold/10 text-aura-gold text-[10px] font-black tracking-widest mb-8 border border-aura-gold/20">
+              <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-aura-gold text-[10px] font-black tracking-widest mb-8 border border-white/20 backdrop-blur-sm">
                 {t.hero.badge}
               </div>
-              <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.85] mb-8 sm:mb-12 font-display font-black uppercase tracking-tighter">
+              <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.85] mb-8 sm:mb-12 font-display font-black uppercase tracking-tighter text-white">
                 {t.hero.title}
               </h2>
-              <p className="text-base sm:text-lg font-sans opacity-60 max-w-md mx-auto lg:mx-0 mb-8 sm:mb-12 leading-relaxed">
+              <p className="text-base sm:text-lg font-sans opacity-70 max-w-xl mx-auto mb-8 sm:mb-12 leading-relaxed text-white">
                 {t.hero.subtitle}
               </p>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                <button className="pill-button !px-8 sm:!px-10 !py-4 !text-xs bg-aura-deep text-white hover:!bg-aura-gold hover:!text-aura-deep">
+              <div className="flex flex-wrap justify-center gap-4">
+                <button className="pill-button !px-8 sm:!px-10 !py-4 !text-xs !bg-aura-gold !text-aura-deep !border-aura-gold hover:!bg-white hover:!border-white">
                   {t.hero.cta}
                 </button>
-                <button className="pill-button !px-8 sm:!px-10 !py-4 !text-xs group">
+                <button className="pill-button !px-8 sm:!px-10 !py-4 !text-xs !bg-white/10 !text-white !border-white/20 backdrop-blur-sm hover:!bg-white/20 group">
                   VIEW SHOWREEL
                   <ArrowUpRight size={14} className="inline ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
               </div>
             </motion.div>
           </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex justify-center mt-12 lg:mt-0"
-          >
-            {/* Floating 3D Gemstone Simulation */}
-            <motion.div
-              animate={{ 
-                y: [0, -30, 0],
-                rotate: [0, 5, 0]
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-20"
-            >
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-[550px] lg:h-[550px] relative">
-                <img 
-                  src="https://picsum.photos/seed/gem-3d/1000/1000" 
-                  alt="Floating Gem" 
-                  className="w-full h-full object-cover rounded-full shadow-[0_50px_100px_rgba(0,0,0,0.15)] border-[10px] sm:border-[15px] border-white/40 backdrop-blur-md"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-aura-gold/30 to-transparent pointer-events-none mix-blend-overlay" />
-              </div>
-            </motion.div>
-            
-            {/* Background decorative ring */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-aura-deep/5 rounded-full pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-aura-deep/5 rounded-full pointer-events-none" />
-          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
         >
-          <div className="w-[1px] h-12 bg-aura-deep" />
-          <span className="text-[8px] font-black tracking-widest uppercase">SCROLL</span>
+          <div className="w-[1px] h-12 bg-white" />
+          <span className="text-[8px] font-black tracking-widest uppercase text-white">SCROLL</span>
         </motion.div>
       </section>
 
