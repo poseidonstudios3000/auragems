@@ -102,8 +102,9 @@ export const TRANSLATIONS = {
     nav: { about: 'About', shop: 'Shop', collections: 'Collections', contact: 'Contact' },
     hero: {
       badge: 'LUXURY NATURAL GEMSTONES',
-      title: 'THE ART OF EARTH, THE ESSENCE OF LIGHT',
-      subtitle: 'Rare natural gemstones to elevate your space and energy.',
+      titleLine1: 'THE ART OF EARTH',
+      titleLine2: 'THE ESSENCE OF LIGHT',
+      subtitle: 'Rare natural gemstones to elevate your space and energy',
       cta: 'EXPLORE COLLECTION',
       accent: 'BASED IN DUBAI, UAE'
     },
@@ -142,8 +143,9 @@ export const TRANSLATIONS = {
     nav: { about: 'عن الشركة', shop: 'المتجر', collections: 'المجموعات', contact: 'اتصل بنا' },
     hero: {
       badge: 'أحجار كريمة طبيعية فاخرة',
-      title: 'فن الأرض، جوهر الضوء',
-      subtitle: 'أحجار كريمة طبيعية نادرة للارتقاء بمساحتك وطاقتك.',
+      titleLine1: 'فن الأرض',
+      titleLine2: 'جوهر الضوء',
+      subtitle: 'أحجار كريمة طبيعية نادرة للارتقاء بمساحتك وطاقتك',
       cta: 'استكشف المجموعة',
       accent: 'مقرنا في دبي، الإمارات العربية المتحدة'
     },

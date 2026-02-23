@@ -28,28 +28,28 @@ export default function App() {
   return (
     <div className={`min-h-screen ${isRtl ? 'rtl' : ''} selection:bg-aura-gold selection:text-aura-deep bg-aura-cream`}>
       {/* Header / Top Navigation */}
-      <header className="fixed top-0 w-full z-50 px-4 sm:px-8 py-6 sm:py-10 flex justify-between items-center pointer-events-none">
+      <header className="fixed top-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-6 flex justify-between items-center pointer-events-none">
         <div className="flex items-center gap-2 sm:gap-4 pointer-events-auto">
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="pill-button flex items-center gap-2 !px-3 sm:!px-5"
+            className="pill-button flex items-center gap-2 !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/20 backdrop-blur-md"
           >
             {isMenuOpen ? <X size={14} /> : <Menu size={14} />}
             <span className="hidden sm:inline">Menu</span>
           </button>
           <div className="hidden lg:flex gap-2">
-            <a href="#shop" className="pill-button">{t.nav.shop}</a>
-            <a href="#collections" className="pill-button">{t.nav.collections}</a>
-            <a href="#about" className="pill-button">{t.nav.about}</a>
-            <a href="#contact" className="pill-button">{t.nav.contact}</a>
+            <a href="#shop" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.shop}</a>
+            <a href="#collections" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.collections}</a>
+            <a href="#about" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.about}</a>
+            <a href="#contact" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.contact}</a>
           </div>
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-lg sm:text-2xl font-display font-black tracking-[0.4em] cursor-pointer"
+            className="text-lg sm:text-2xl font-display font-black tracking-[0.4em] cursor-pointer text-white"
           >
             AURA GEMS
           </motion.h1>
@@ -57,9 +57,9 @@ export default function App() {
 
         <div className="flex items-center gap-2 sm:gap-4 pointer-events-auto">
           <div className="relative">
-            <button 
+            <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="pill-button flex items-center gap-2 !px-3 sm:!px-5"
+              className="pill-button flex items-center gap-2 !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/20 backdrop-blur-md"
             >
               <Globe size={14} />
               <span>{lang.toUpperCase()}</span>
@@ -85,7 +85,7 @@ export default function App() {
               )}
             </AnimatePresence>
           </div>
-          <button className="pill-button relative !px-3 sm:!px-5">
+          <button className="pill-button relative !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/20 backdrop-blur-md">
             <ShoppingBag size={14} />
             {cart.length > 0 && (
               <motion.span 
@@ -129,7 +129,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-20 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
@@ -155,10 +155,10 @@ export default function App() {
               <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-aura-gold text-[10px] font-black tracking-widest mb-8 border border-white/20 backdrop-blur-sm">
                 {t.hero.badge}
               </div>
-              <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.85] mb-8 sm:mb-12 font-display font-black uppercase tracking-tighter text-white">
-                {t.hero.title}
+              <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[7.5rem] leading-[0.85] mb-6 sm:mb-10 font-display font-black uppercase tracking-tighter text-white">
+                {t.hero.titleLine1}<br/>{t.hero.titleLine2}
               </h2>
-              <p className="text-base sm:text-lg font-sans opacity-70 max-w-xl mx-auto mb-8 sm:mb-12 leading-relaxed text-white">
+              <p className="text-sm sm:text-xl md:text-2xl font-sans opacity-70 max-w-none mx-auto mb-8 sm:mb-12 leading-relaxed text-white whitespace-nowrap">
                 {t.hero.subtitle}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
@@ -178,7 +178,7 @@ export default function App() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
+          className="absolute bottom-6 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
         >
           <div className="w-[1px] h-12 bg-white" />
           <span className="text-[8px] font-black tracking-widest uppercase text-white">SCROLL</span>
