@@ -1,82 +1,67 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { ShoppingBag, Globe, Menu, X, ChevronRight, Instagram, Facebook, Twitter, ArrowUpRight, Search, ShieldCheck, Gem, Award } from 'lucide-react';
+import { Globe, Sun, Moon, Instagram, Facebook, Twitter, ArrowUpRight, ShieldCheck, Gem, Award } from 'lucide-react';
 import { PRODUCTS, TRANSLATIONS, type Language } from './constants';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('en');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cart, setCart] = useState<string[]>([]);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   const t = TRANSLATIONS[lang];
-  const isRtl = lang === 'ar' || lang === 'ur';
+  const isRtl = lang === 'ur' || lang === 'ur';
 
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.95]);
 
-  const addToCart = (productId: string) => {
-    setCart(prev => [...prev, productId]);
-  };
-
   const languages: { code: Language; label: string }[] = [
     { code: 'en', label: 'EN' },
-    { code: 'ar', label: 'AR' },
+    { code: 'ur', label: 'UR' },
   ];
 
   return (
-    <div className={`min-h-screen ${isRtl ? 'rtl' : ''} selection:bg-aura-gold selection:text-aura-deep bg-aura-cream`}>
-      {/* Header / Top Navigation */}
-      <header className="fixed top-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-6 flex justify-between items-center pointer-events-none">
-        <div className="flex items-center gap-2 sm:gap-4 pointer-events-auto">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="pill-button flex items-center gap-2 !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/20 backdrop-blur-md"
-          >
-            {isMenuOpen ? <X size={14} /> : <Menu size={14} />}
-            <span className="hidden sm:inline">Menu</span>
-          </button>
-          <div className="hidden lg:flex gap-2">
-            <a href="#shop" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.shop}</a>
-            <a href="#collections" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.collections}</a>
-            <a href="#about" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.about}</a>
-            <a href="#contact" className="pill-button !bg-white/10 !text-white !border-white/20 backdrop-blur-md hover:!bg-white/20">{t.nav.contact}</a>
-          </div>
-        </div>
-
-        <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+    <div className={`min-h-screen ${isRtl ? 'rtl' : ''} ${isDark ? 'dark' : ''} selection:bg-aura-gold selection:text-aura-deep bg-aura-cream dark:bg-aura-deep transition-colors duration-500`}>
+      {/* Header */}
+      <header className="fixed top-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-6 flex justify-between items-center pointer-events-none bg-white/10 dark:bg-aura-deep/40 backdrop-blur-xl border-b border-white/10 dark:border-white/5 transition-colors duration-500">
+        <div className="pointer-events-auto">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-lg sm:text-2xl font-display font-black tracking-[0.4em] cursor-pointer text-white"
+            className="text-lg sm:text-2xl font-display font-black tracking-[0.4em] cursor-pointer text-white drop-shadow-sm"
           >
             AURA GEMS
           </motion.h1>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-4 pointer-events-auto">
+        <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className="pill-button flex items-center gap-2 !px-3 sm:!px-4 !bg-white/10 !text-white !border-white/15 hover:!bg-white/20"
+          >
+            {isDark ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
           <div className="relative">
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="pill-button flex items-center gap-2 !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/20 backdrop-blur-md"
+              className="pill-button flex items-center gap-2 !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/15 hover:!bg-white/20"
             >
               <Globe size={14} />
               <span>{lang.toUpperCase()}</span>
             </button>
             <AnimatePresence>
               {langMenuOpen && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full mt-2 right-0 glass-card p-2 min-w-[100px] flex flex-col gap-1 rounded-2xl overflow-hidden"
+                  className="absolute top-full mt-2 right-0 bg-white/15 backdrop-blur-xl border border-white/15 p-2 min-w-[100px] flex flex-col gap-1 rounded-2xl overflow-hidden"
                 >
                   {languages.map(l => (
-                    <button 
+                    <button
                       key={l.code}
                       onClick={() => { setLang(l.code); setLangMenuOpen(false); }}
-                      className={`text-[10px] font-bold px-4 py-2 rounded-xl transition-all ${lang === l.code ? 'bg-aura-deep text-white' : 'hover:bg-aura-deep/5'}`}
+                      className={`text-[10px] font-bold px-4 py-2 rounded-xl transition-all text-white ${lang === l.code ? 'bg-white/20' : 'hover:bg-white/10'}`}
                     >
                       {l.label}
                     </button>
@@ -85,62 +70,20 @@ export default function App() {
               )}
             </AnimatePresence>
           </div>
-          <button className="pill-button relative !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/20 backdrop-blur-md">
-            <ShoppingBag size={14} />
-            {cart.length > 0 && (
-              <motion.span 
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="absolute -top-1 -right-1 bg-aura-gold text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-black"
-              >
-                {cart.length}
-              </motion.span>
-            )}
-          </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, x: isRtl ? 100 : -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: isRtl ? 100 : -100 }}
-            className="fixed inset-0 z-[45] bg-aura-deep text-white p-12 flex flex-col justify-center"
-          >
-            <nav className="flex flex-col gap-8">
-              {['shop', 'about', 'collections', 'contact'].map((item, i) => (
-                <motion.a
-                  key={item}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  href={`#${item}`}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter hover:text-aura-gold transition-colors"
-                >
-                  {t.nav[item as keyof typeof t.nav]}
-                </motion.a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Hero Section */}
+      {/* Hero Section — always has image bg + white text */}
       <section className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 pb-20 overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/auragems_hero.webp"
+            src="/images/webp/auragems_hero.webp"
             alt="Luxury gemstone in Dubai apartment"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-aura-deep/40" />
         </div>
 
-        {/* Vertical Text Accent */}
         <div className={`absolute top-1/2 -translate-y-1/2 hidden xl:block text-[10px] font-black tracking-[1em] opacity-30 uppercase vertical-text text-white ${isRtl ? 'left-12' : 'right-12'}`}>
           {t.hero.accent}
         </div>
@@ -162,19 +105,14 @@ export default function App() {
                 {t.hero.subtitle}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <button className="pill-button !px-8 sm:!px-10 !py-4 !text-xs !bg-aura-gold !text-aura-deep !border-aura-gold hover:!bg-white hover:!border-white">
+                <a href="#shop" className="pill-button !px-8 sm:!px-10 !py-4 !text-xs !bg-aura-gold !text-aura-deep !border-aura-gold hover:!bg-white hover:!border-white">
                   {t.hero.cta}
-                </button>
-                <button className="pill-button !px-8 sm:!px-10 !py-4 !text-xs !bg-white/10 !text-white !border-white/20 backdrop-blur-sm hover:!bg-white/20 group">
-                  VIEW SHOWREEL
-                  <ArrowUpRight size={14} className="inline ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -185,32 +123,40 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* Numbered Cards Section - The Process */}
-      <section className="py-20 sm:py-32 px-6 sm:px-8 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* The Process Section */}
+      <section className="py-16 sm:py-24 px-6 sm:px-8 bg-white dark:bg-aura-dark-surface transition-colors duration-500 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-6 uppercase">OUR PROMISE</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x md:divide-aura-deep/10 dark:md:divide-white/10">
             {t.process.map((item, i) => {
               const icons = [ShieldCheck, Gem, Award];
               const Icon = icons[i];
               return (
-                <motion.div 
+                <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  className="glass-card p-8 sm:p-12 rounded-[30px] sm:rounded-[40px] flex flex-col items-center text-center group hover:bg-aura-deep hover:text-white transition-all duration-700 cursor-default"
+                  transition={{ delay: i * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col items-center text-center px-8 sm:px-12 py-12 md:py-0"
                 >
-                  <div className="w-12 h-8 rounded-full bg-aura-stone group-hover:bg-white/10 flex items-center justify-center text-[10px] font-black mb-8 sm:mb-12 transition-colors">
-                    {item.id}
+                  <span className="text-[80px] sm:text-[100px] font-display font-black leading-none text-aura-deep/[0.03] dark:text-white/[0.03] mb-4">{item.id}</span>
+                  <div className="mb-6 text-aura-gold">
+                    <Icon size={28} strokeWidth={1.5} />
                   </div>
-                  <div className="mb-8 sm:mb-12 text-aura-gold group-hover:scale-110 transition-transform duration-500">
-                    <Icon size={40} strokeWidth={1} />
-                  </div>
-                  <h4 className="text-lg sm:text-xl font-display font-black mb-4 uppercase tracking-tight">
+                  <h4 className="text-base sm:text-lg font-display font-black mb-4 uppercase tracking-widest text-aura-deep dark:text-white transition-colors duration-500">
                     {item.title}
                   </h4>
-                  <p className="text-xs sm:text-sm opacity-50 group-hover:opacity-70 leading-relaxed">
+                  <div className="w-8 h-[1px] bg-aura-gold/40 mb-6" />
+                  <p className="text-sm text-aura-deep/40 dark:text-white/40 leading-relaxed max-w-xs transition-colors duration-500">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -220,123 +166,45 @@ export default function App() {
         </div>
       </section>
 
-      {/* Collections Section - Editorial Layout */}
-      <section id="collections" className="py-20 sm:py-32 lg:py-48 px-6 sm:px-8 bg-aura-cream">
+      {/* Shop Section */}
+      <section id="shop" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 bg-aura-cream dark:bg-aura-deep transition-colors duration-500">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8">
-            <div className="lg:col-span-5">
-              <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-6 uppercase">COLLECTIONS</p>
-              <h2 className="text-4xl sm:text-5xl lg:text-8xl font-display font-black uppercase leading-[0.85] mb-8 sm:mb-12">
-                {t.collections.title.split(' ')[0]}<br/>{t.collections.title.split(' ')[1]}
-              </h2>
-              <div className="aspect-[4/5] rounded-[30px] sm:rounded-[60px] overflow-hidden relative group mb-12">
-                <img 
-                  src="https://picsum.photos/seed/collection-1/1000/1200" 
-                  alt="Collection" 
-                  className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-aura-deep/60 to-transparent flex flex-col justify-end p-8 sm:p-12">
-                  <h3 className="text-2xl sm:text-4xl text-white font-display font-black uppercase mb-4">{t.collections.items[0].title}</h3>
-                  <p className="text-white/60 text-[9px] sm:text-[10px] font-black tracking-widest uppercase mb-4">{t.collections.items[0].subtitle}</p>
-                  <button className="text-white/60 text-[9px] sm:text-[10px] font-black tracking-widest uppercase flex items-center gap-2 hover:text-aura-gold transition-colors">
-                    EXPLORE <ArrowUpRight size={14} />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-7 flex flex-col justify-end">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="aspect-square rounded-[30px] sm:rounded-[60px] overflow-hidden relative group">
-                  <img 
-                    src="https://picsum.photos/seed/collection-2/800/800" 
-                    alt="Collection" 
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-aura-deep/20 group-hover:bg-aura-deep/40 transition-colors" />
-                  <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <h3 className="text-xl sm:text-2xl font-display font-black uppercase mb-2">{t.collections.items[1].title}</h3>
-                    <p className="text-[9px] sm:text-[10px] font-black tracking-widest uppercase">{t.collections.items[1].subtitle}</p>
-                  </div>
-                </div>
-                <div className="aspect-square rounded-[30px] sm:rounded-[60px] overflow-hidden relative group">
-                  <img 
-                    src="https://picsum.photos/seed/collection-3/800/800" 
-                    alt="Collection" 
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-aura-deep/20 group-hover:bg-aura-deep/40 transition-colors" />
-                  <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <h3 className="text-xl sm:text-2xl font-display font-black uppercase mb-2">{t.collections.items[2].title}</h3>
-                    <p className="text-[9px] sm:text-[10px] font-black tracking-widest uppercase">{t.collections.items[2].subtitle}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 sm:mt-12 p-8 sm:p-12 glass-card rounded-[30px] sm:rounded-[60px]">
-                <p className="text-lg sm:text-xl font-sans opacity-60 leading-relaxed mb-8">
-                  "Each gemstone tells a story that began millions of years ago. Our mission is to write the next chapter of that story with you."
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-aura-gold" />
-                  <div>
-                    <p className="text-xs sm:text-sm font-black uppercase tracking-widest">AHMED AL-SAYED</p>
-                    <p className="text-[8px] sm:text-[10px] opacity-40 uppercase tracking-widest">Founder & Master Gemologist</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Shop Section - Bento Grid Style */}
-      <section id="shop" className="py-20 sm:py-32 lg:py-48 px-6 sm:px-8 bg-white">
-        <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 sm:mb-24 gap-8">
-            <div className="max-w-2xl">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 sm:mb-16 gap-8">
+            <div>
               <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-6 uppercase">{t.shop.title}</p>
-              <h2 className="text-4xl sm:text-5xl lg:text-8xl font-display font-black uppercase leading-none tracking-tighter">{t.shop.subtitle}</h2>
+              <h2 className="text-2xl sm:text-4xl lg:text-6xl font-display font-black uppercase leading-none tracking-tighter whitespace-nowrap text-aura-deep dark:text-white transition-colors duration-500">{t.shop.subtitle}</h2>
             </div>
-            <button className="pill-button !px-8 sm:!px-12 !py-4 sm:!py-5 !text-xs bg-aura-deep text-white hover:!bg-aura-gold hover:!text-aura-deep">
+            <button className="pill-button !px-8 sm:!px-12 !py-4 sm:!py-5 !text-xs !bg-aura-deep !text-white dark:!bg-white dark:!text-aura-deep hover:!bg-aura-gold hover:!text-aura-deep dark:hover:!bg-aura-gold transition-colors duration-500">
               {t.shop.viewAll}
             </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {PRODUCTS.map((product, idx) => (
-              <motion.div 
+              <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group relative bg-aura-cream rounded-[30px] sm:rounded-[40px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700"
+                className="group relative bg-white dark:bg-aura-dark-card rounded-[30px] sm:rounded-[40px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700"
               >
                 <div className="aspect-[4/5] overflow-hidden relative">
-                  <img 
-                    src={product.image} 
-                    alt={product.name[lang]} 
+                  <img
+                    src={product.image}
+                    alt={product.name[lang]}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-aura-deep/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <button 
-                    onClick={() => addToCart(product.id)}
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 pill-button !bg-white !text-aura-deep opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500"
-                  >
+                  <button className="absolute bottom-8 left-1/2 -translate-x-1/2 pill-button !bg-white !text-aura-deep opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                     {t.shop.addToCart}
                   </button>
                 </div>
                 <div className="p-8 sm:p-10">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-xl sm:text-2xl font-display font-black uppercase leading-none group-hover:text-aura-gold transition-colors">{product.name[lang]}</h4>
-                    <span className="text-aura-gold font-black tracking-tighter text-base sm:text-lg">{product.price}</span>
-                  </div>
-                  <p className="text-[10px] font-black tracking-widest opacity-30 uppercase mb-2">{product.category[lang]}</p>
-                  <p className="text-[9px] opacity-40 uppercase tracking-widest">{product.specs}</p>
+                  <h4 className="text-xl sm:text-2xl font-display font-black uppercase leading-tight group-hover:text-aura-gold transition-colors mb-3 text-aura-deep dark:text-white">{product.name[lang]}</h4>
+                  <p className="text-[10px] font-black tracking-widest text-aura-deep/30 dark:text-white/30 uppercase mb-1">{product.category[lang]}</p>
+                  <p className="text-[9px] text-aura-deep/40 dark:text-white/40 uppercase tracking-widest mb-6">{product.specs}</p>
+                  <span className="text-aura-gold font-black tracking-wide text-xs uppercase">{product.price}</span>
                 </div>
               </motion.div>
             ))}
@@ -344,12 +212,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* About Section - Split Layout */}
-      <section id="about" className="py-20 sm:py-32 lg:py-64 px-6 sm:px-8 bg-aura-deep text-white overflow-hidden relative">
-        {/* Background Mist */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-aura-gold/5 blur-[150px] pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+      {/* About Section */}
+      <section id="about" className="py-16 sm:py-24 lg:py-32 px-6 sm:px-8 bg-white dark:bg-aura-dark-surface transition-colors duration-500 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -357,44 +222,42 @@ export default function App() {
             className="text-center lg:text-left"
           >
             <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-8 sm:mb-12 uppercase">OUR HERITAGE</p>
-            <h2 className="text-4xl sm:text-6xl lg:text-9xl font-display font-black uppercase leading-[0.85] mb-12 sm:mb-16 tracking-tighter">
+            <h2 className="text-4xl sm:text-6xl lg:text-9xl font-display font-black uppercase leading-[0.85] mb-12 sm:mb-16 tracking-tighter text-aura-deep dark:text-white transition-colors duration-500">
               {t.about.title}
             </h2>
-            <p className="text-lg sm:text-xl font-sans opacity-50 leading-relaxed max-w-lg mx-auto lg:mx-0 mb-12 sm:mb-16">
+            <p className="text-lg sm:text-xl font-sans text-aura-deep/50 dark:text-white/50 leading-relaxed max-w-lg mx-auto lg:mx-0 mb-12 sm:mb-16 transition-colors duration-500">
               {t.about.content}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
               {t.about.highlights.map((highlight, i) => (
                 <div key={i}>
                   <p className="text-3xl sm:text-4xl font-display font-black mb-2 text-aura-gold uppercase">
-                    {highlight.includes('%') ? '100%' : highlight.includes('Dubai') ? 'DUBAI' : 'CERTIFIED'}
+                    {highlight.includes('%') ? '100%' : highlight.includes('Dubai') || highlight.includes('دبئی') ? 'DUBAI' : 'CERTIFIED'}
                   </p>
-                  <p className="text-[9px] sm:text-[10px] font-black tracking-widest opacity-30 uppercase">{highlight}</p>
+                  <p className="text-[9px] sm:text-[10px] font-black tracking-widest text-aura-deep/30 dark:text-white/30 uppercase transition-colors duration-500">{highlight}</p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative mt-12 lg:mt-0"
           >
             <div className="aspect-square rounded-[30px] sm:rounded-[60px] overflow-hidden relative group">
-              <img 
-                src="https://picsum.photos/seed/aura-heritage/1000/1000" 
-                alt="Heritage" 
+              <img
+                src="/images/webp/about-showcase.webp"
+                alt="AURA GEMS Showcase"
                 className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-aura-gold/10 mix-blend-overlay" />
             </div>
-            {/* Floating Element */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 sm:-bottom-10 -right-6 sm:-right-10 glass-card !bg-aura-gold !text-aura-deep p-6 sm:p-10 rounded-[20px] sm:rounded-[40px] shadow-2xl"
+              className="absolute -bottom-6 sm:-bottom-10 -right-6 sm:-right-10 bg-aura-gold text-aura-deep p-6 sm:p-10 rounded-[20px] sm:rounded-[40px] shadow-2xl"
             >
               <p className="text-[9px] sm:text-[10px] font-black tracking-widest uppercase mb-2">Certified</p>
               <p className="text-lg sm:text-2xl font-display font-black leading-none">AUTHENTICITY<br/>GUARANTEED</p>
@@ -404,34 +267,33 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-aura-cream py-20 sm:py-32 px-6 sm:px-8 border-t border-aura-deep/5">
+      <footer id="contact" className="bg-aura-cream dark:bg-aura-deep py-16 sm:py-24 px-6 sm:px-8 border-t border-aura-deep/5 dark:border-white/5 transition-colors duration-500">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-20 mb-20 sm:mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-16 mb-16 sm:mb-20">
             <div className="lg:col-span-1">
-              <h2 className="text-2xl sm:text-3xl font-display font-black tracking-[0.4em] mb-8 sm:mb-12">AURA GEMS</h2>
-              <p className="text-sm opacity-40 leading-relaxed mb-8 sm:mb-12 max-w-xs">
+              <h2 className="text-2xl sm:text-3xl font-display font-black tracking-[0.4em] mb-8 sm:mb-12 text-aura-deep dark:text-white transition-colors duration-500">AURA GEMS</h2>
+              <p className="text-sm text-aura-deep/40 dark:text-white/40 leading-relaxed mb-8 sm:mb-12 max-w-xs transition-colors duration-500">
                 {t.footer.brand}
               </p>
               <div className="flex gap-4">
-                <a href="#" className="pill-button !p-3 hover:!bg-aura-gold hover:!text-aura-deep"><Instagram size={16} /></a>
-                <a href="#" className="pill-button !p-3 hover:!bg-aura-gold hover:!text-aura-deep"><Facebook size={16} /></a>
-                <a href="#" className="pill-button !p-3 hover:!bg-aura-gold hover:!text-aura-deep"><Twitter size={16} /></a>
+                <a href="#" className="pill-button !p-3 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Instagram size={16} /></a>
+                <a href="#" className="pill-button !p-3 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Facebook size={16} /></a>
+                <a href="#" className="pill-button !p-3 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Twitter size={16} /></a>
               </div>
             </div>
-            
+
             <div>
-              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 opacity-30">Navigation</h4>
-              <ul className="flex flex-col gap-4 sm:gap-6 text-[11px] font-bold uppercase tracking-widest">
+              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 text-aura-deep/30 dark:text-white/30 transition-colors duration-500">Navigation</h4>
+              <ul className="flex flex-col gap-4 sm:gap-6 text-[11px] font-bold uppercase tracking-widest text-aura-deep dark:text-white transition-colors duration-500">
                 <li><a href="#about" className="luxury-underline">{t.nav.about}</a></li>
                 <li><a href="#shop" className="luxury-underline">{t.nav.shop}</a></li>
-                <li><a href="#collections" className="luxury-underline">{t.nav.collections}</a></li>
                 <li><a href="#contact" className="luxury-underline">{t.nav.contact}</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 opacity-30">Services</h4>
-              <ul className="flex flex-col gap-4 sm:gap-6 text-[11px] font-bold uppercase tracking-widest">
+              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 text-aura-deep/30 dark:text-white/30 transition-colors duration-500">Services</h4>
+              <ul className="flex flex-col gap-4 sm:gap-6 text-[11px] font-bold uppercase tracking-widest text-aura-deep dark:text-white transition-colors duration-500">
                 {t.footer.services.map((service, i) => (
                   <li key={i}><a href="#" className="luxury-underline">{service}</a></li>
                 ))}
@@ -439,22 +301,22 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 opacity-30">Newsletter</h4>
-              <p className="text-sm opacity-40 mb-8 sm:mb-10">{t.footer.newsletter}</p>
-              <form className="flex border-b border-aura-deep/10 pb-4 group focus-within:border-aura-gold transition-colors">
-                <input 
-                  type="email" 
-                  placeholder="EMAIL ADDRESS" 
-                  className="bg-transparent text-[10px] font-black tracking-widest w-full outline-none"
+              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 text-aura-deep/30 dark:text-white/30 transition-colors duration-500">Newsletter</h4>
+              <p className="text-sm text-aura-deep/40 dark:text-white/40 mb-8 sm:mb-10 transition-colors duration-500">{t.footer.newsletter}</p>
+              <form className="flex border-b border-aura-deep/10 dark:border-white/10 pb-4 group focus-within:border-aura-gold transition-colors">
+                <input
+                  type="email"
+                  placeholder="EMAIL ADDRESS"
+                  className="bg-transparent text-[10px] font-black tracking-widest w-full outline-none text-aura-deep dark:text-white placeholder:text-aura-deep/30 dark:placeholder:text-white/30 transition-colors duration-500"
                 />
-                <button type="submit" className="hover:text-aura-gold transition-colors">
+                <button type="submit" className="text-aura-deep dark:text-white hover:text-aura-gold transition-colors">
                   <ArrowUpRight size={20} />
                 </button>
               </form>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-12 sm:pt-16 border-t border-aura-deep/5 text-[9px] sm:text-[10px] font-black tracking-[0.3em] opacity-20 gap-4 text-center">
+          <div className="flex flex-col md:flex-row justify-between items-center pt-12 sm:pt-16 border-t border-aura-deep/5 dark:border-white/5 text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-aura-deep/20 dark:text-white/20 gap-4 text-center transition-colors duration-500">
             <p>{t.footer.rights}</p>
             <p>AURAGEMS.AE</p>
           </div>

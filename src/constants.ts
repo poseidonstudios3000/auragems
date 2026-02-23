@@ -1,99 +1,63 @@
-export type Language = 'en' | 'ar';
+export type Language = 'en' | 'ur';
 
 export interface Product {
   id: string;
-  name: { en: string; ar: string };
+  name: { en: string; ur: string };
   price: string;
-  category: { en: string; ar: string };
+  category: { en: string; ur: string };
   image: string;
-  description: { en: string; ar: string };
+  description: { en: string; ur: string };
   specs: string;
 }
 
 export const PRODUCTS: Product[] = [
   {
     id: '1',
-    name: { en: 'Black Tourmaline Schorl with Quartz', ar: 'شورل التورمالين الأسود مع الكوارتز' },
+    name: { en: 'Black Tourmaline with Quartz', ur: 'کوارٹز کے ساتھ بلیک ٹورمالین' },
     price: 'Price on Demand',
-    category: { en: 'Natural Formations', ar: 'تكوينات طبيعية' },
-    image: 'https://picsum.photos/seed/tourmaline/1000/1200',
-    description: { 
-      en: 'A stunning combination of black tourmaline and clear quartz.', 
-      ar: 'مزيج مذهل من التورمالين الأسود والكوارتز الشفاف.'
+    category: { en: 'Natural Formations', ur: 'قدرتی ساخت' },
+    image: '/images/webp/black-tourmaline-with-quartz.webp',
+    description: {
+      en: 'A stunning combination of black tourmaline and clear quartz.',
+      ur: 'بلیک ٹورمالین اور شفاف کوارٹز کا شاندار امتزاج۔'
     },
-    specs: '155g, 68×53×47mm'
+    specs: '155 gm, 68 × 53 × 47 mm'
   },
   {
     id: '2',
-    name: { en: 'Spessartine Garnet Crystals', ar: 'بلورات عقيق سبيسارتين' },
+    name: { en: 'Alien Eye Fluorite Crystal', ur: 'ایلین آئی فلورائٹ کرسٹل' },
     price: 'Price on Demand',
-    category: { en: 'Rare Specimens', ar: 'عينات نادرة' },
-    image: 'https://picsum.photos/seed/garnet/1000/1200',
-    description: { 
-      en: 'Spessartine Garnet Crystals with Muscovite on Feldspar.', 
-      ar: 'بلورات عقيق سبيسارتين مع المسكوفيت على الفلسبار.'
+    category: { en: 'Rare Specimens', ur: 'نایاب نمونے' },
+    image: '/images/webp/alien-eye-fluorite-crystal.webp',
+    description: {
+      en: 'Exceptional Alien Eye Fluorite Crystal specimen.',
+      ur: 'ایلین آئی فلورائٹ کرسٹل کا غیر معمولی نمونہ۔'
     },
-    specs: '580g, 60×113×82mm'
+    specs: '185 gm, 39 × 88 × 50 mm'
   },
   {
     id: '3',
-    name: { en: 'Green Titanite Sphene Crystals', ar: 'بلورات تيتانيت سفين خضراء' },
+    name: { en: 'Green Titanite (Sphene) Crystals with Calcite', ur: 'کیلسائٹ کے ساتھ سبز ٹائٹنائٹ (اسفین) کرسٹلز' },
     price: 'Price on Demand',
-    category: { en: 'Collector\'s Grade', ar: 'درجة هواة الجمع' },
-    image: 'https://picsum.photos/seed/titanite/1000/1200',
-    description: { 
-      en: 'Green Titanite Sphene Crystals with Calcite.', 
-      ar: 'بلورات تيتانيت سفين خضراء مع الكالسيت.'
+    category: { en: 'Collector\'s Grade', ur: 'کلیکٹر گریڈ' },
+    image: '/images/webp/green-titanite-sphene-crystals-with-calcite.webp',
+    description: {
+      en: 'Green Titanite (Sphene) Crystals with Calcite.',
+      ur: 'کیلسائٹ کے ساتھ سبز ٹائٹنائٹ (اسفین) کرسٹلز۔'
     },
-    specs: '147g, 45×80×63mm'
+    specs: '147 gm, 45 × 80 × 63 mm'
   },
   {
     id: '4',
-    name: { en: 'Alien Eye Fluorite Crystal', ar: 'كريستال فلوريت "عين الفضائي"' },
+    name: { en: 'Spessartine Garnet Crystals with Muscovite on Feldspar', ur: 'فیلڈسپار پر مسکووائٹ کے ساتھ اسپیسارٹائن گارنیٹ کرسٹلز' },
     price: 'Price on Demand',
-    category: { en: 'Rare Specimens', ar: 'عينات نادرة' },
-    image: 'https://picsum.photos/seed/fluorite-alien/1000/1200',
-    description: { 
-      en: 'Exceptional Alien Eye Fluorite Crystal specimen.', 
-      ar: 'عينة استثنائية من كريستال الفلوريت عين الفضائي.'
+    category: { en: 'Rare Specimens', ur: 'نایاب نمونے' },
+    image: '/images/webp/spessartine-garnet-crystals-with-muscovite-on-feldspar.webp',
+    description: {
+      en: 'Spessartine Garnet Crystals with Muscovite on Feldspar.',
+      ur: 'فیلڈسپار پر مسکووائٹ کے ساتھ اسپیسارٹائن گارنیٹ کرسٹلز۔'
     },
-    specs: '185g, 39×88×50mm'
-  },
-  {
-    id: '5',
-    name: { en: 'Celestine Crystals Cluster', ar: 'عنقود بلورات السيليستين' },
-    price: 'Price on Demand',
-    category: { en: 'Crystal Clusters', ar: 'عناقيد كريستالية' },
-    image: 'https://picsum.photos/seed/celestine/1000/1200',
-    description: { 
-      en: 'Celestine Crystals Cluster with Calcite.', 
-      ar: 'عنقود بلورات السيليستين مع الكالسيت.'
-    },
-    specs: '263g, 39×124×65mm'
-  },
-  {
-    id: '6',
-    name: { en: 'Fluorescent Apatite Cluster', ar: 'عنقود أباتيت فلوري' },
-    price: 'Price on Demand',
-    category: { en: 'Natural Formations', ar: 'تكوينات طبيعية' },
-    image: 'https://picsum.photos/seed/apatite/1000/1200',
-    description: { 
-      en: 'Vibrant Fluorescent Apatite Cluster specimen.', 
-      ar: 'عينة عنقود أباتيت فلوري نابضة بالحياة.'
-    },
-    specs: '495g, 106×77×57mm'
-  },
-  {
-    id: '7',
-    name: { en: 'Phantom Fluorite Crystal', ar: 'كريستال فلوريت فانتوم' },
-    price: 'Price on Demand',
-    category: { en: 'Rare Specimens', ar: 'عينات نادرة' },
-    image: 'https://picsum.photos/seed/phantom/1000/1200',
-    description: { 
-      en: 'Unique Phantom Fluorite Crystal formation.', 
-      ar: 'تكوين فريد من كريستال الفلوريت فانتوم.'
-    },
-    specs: '178g, 36×70×70mm'
+    specs: '580 gm, 60 × 113 × 82 mm'
   }
 ];
 
@@ -132,52 +96,52 @@ export const TRANSLATIONS = {
       content: 'AURA GEMS brings rare, natural gemstones to Dubai and the UAE. Whether you\'re looking to add a statement piece to your interior or harness the spiritual energy of natural crystals, each stone in our collection has been handpicked for its beauty and authenticity.',
       highlights: ['100% Natural Specimens', 'Authenticity Guaranteed', 'Based in Dubai, UAE']
     },
-    footer: { 
+    footer: {
       brand: 'Rare natural gemstones for luxury interiors and spiritual living. Based in Dubai, serving the UAE.',
       services: ['Private Viewing', 'WhatsApp Inquiries', 'Shipping Within UAE'],
       newsletter: 'Join our list for exclusive drops and new arrivals.',
       rights: '© 2025 AURA GEMS — auragems.ae'
     }
   },
-  ar: {
-    nav: { about: 'عن الشركة', shop: 'المتجر', collections: 'المجموعات', contact: 'اتصل بنا' },
+  ur: {
+    nav: { about: 'ہمارے بارے میں', shop: 'شاپ', collections: 'کلیکشنز', contact: 'رابطہ کریں' },
     hero: {
-      badge: 'أحجار كريمة طبيعية فاخرة',
-      titleLine1: 'فن الأرض',
-      titleLine2: 'جوهر الضوء',
-      subtitle: 'أحجار كريمة طبيعية نادرة للارتقاء بمساحتك وطاقتك',
-      cta: 'استكشف المجموعة',
-      accent: 'مقرنا في دبي، الإمارات العربية المتحدة'
+      badge: 'قدرتی قیمتی پتھر',
+      titleLine1: 'زمین کا فن',
+      titleLine2: 'روشنی کا جوہر',
+      subtitle: 'آپ کی جگہ اور توانائی کو بلند کرنے کے لیے نایاب قدرتی قیمتی پتھر',
+      cta: 'کلیکشن دیکھیں',
+      accent: 'دبئی، یو اے ای میں واقع'
     },
     process: [
-      { id: '01', title: 'مختارة يدوياً', desc: 'يتم اختيار كل عينة بعناية لجمالها الطبيعي وتكوينها البلوري وخصائصها الحيوية.' },
-      { id: '02', title: 'طبيعية وغير مقطوعة', desc: 'نحتفي بكل حجر في شكله الخام والأصيل - كما أرادت الطبيعة.' },
-      { id: '03', title: 'أصالة مضمونة', desc: 'يأتي كل حجر كريم من أورا مع شهادة أصالة، تتحقق من تكوينه المعدني وجودته.' }
+      { id: '01', title: 'ہاتھ سے منتخب', desc: 'ہر نمونہ اپنی قدرتی خوبصورتی، کرسٹل ساخت اور توانائی کی خصوصیات کے لیے احتیاط سے چنا جاتا ہے۔' },
+      { id: '02', title: 'قدرتی اور غیر تراشیدہ', desc: 'ہم ہر پتھر کو اس کی خام اور اصلی شکل میں مناتے ہیں — جیسا کہ فطرت نے چاہا۔' },
+      { id: '03', title: 'اصلیت کی ضمانت', desc: 'اورا کا ہر قیمتی پتھر اصلیت کے سرٹیفکیٹ کے ساتھ آتا ہے، جو اس کی معدنی ساخت اور معیار کی تصدیق کرتا ہے۔' }
     ],
     collections: {
-      title: 'مجموعاتنا',
+      title: 'ہماری کلیکشنز',
       items: [
-        { title: 'عناقيد كريستالية', subtitle: 'تكوينات طبيعية' },
-        { title: 'عينات نادرة', subtitle: 'درجة هواة الجمع' },
-        { title: 'أحجار روحانية', subtitle: 'الطاقة والشفاء' }
+        { title: 'کرسٹل کلسٹرز', subtitle: 'قدرتی ساخت' },
+        { title: 'نایاب نمونے', subtitle: 'کلیکٹر گریڈ' },
+        { title: 'روحانی پتھر', subtitle: 'توانائی اور شفا' }
       ]
     },
     shop: {
-      title: 'مجموعة مختارة',
-      subtitle: 'مختارة بعناية لهواة الجمع المتميزين.',
+      title: 'منتخب کلیکشن',
+      subtitle: 'سمجھدار کلیکٹر کے لیے منتخب۔',
       addToCart: 'استفسار',
-      viewAll: 'عرض جميع الأحجار',
+      viewAll: 'تمام پتھر دیکھیں',
     },
     about: {
-      title: 'عن أورا جيمز',
-      content: 'توفر أورا جيمز أحجاراً كريمة طبيعية نادرة في دبي والإمارات العربية المتحدة. سواء كنت تبحث عن قطعة مميزة لديكورك الداخلي أو تسعى للاستفادة من الطاقة الروحية للبلورات الطبيعية، فقد تم اختيار كل حجر في مجموعتنا يدوياً لجماله وأصالته.',
-      highlights: ['عينات طبيعية 100%', 'أصالة مضمونة', 'مقرنا في دبي، الإمارات العربية المتحدة']
+      title: 'اورا جیمز کے بارے میں',
+      content: 'اورا جیمز دبئی اور یو اے ای میں نایاب، قدرتی قیمتی پتھر لاتا ہے۔ چاہے آپ اپنے انٹیریئر میں ایک شاندار ٹکڑا شامل کرنا چاہتے ہوں یا قدرتی کرسٹلز کی روحانی توانائی سے فائدہ اٹھانا چاہتے ہوں، ہماری کلیکشن کا ہر پتھر اپنی خوبصورتی اور اصلیت کے لیے ہاتھ سے چنا گیا ہے۔',
+      highlights: ['100% قدرتی نمونے', 'اصلیت کی ضمانت', 'دبئی، یو اے ای میں واقع']
     },
-    footer: { 
-      brand: 'أحجار كريمة طبيعية نادرة للديكورات الفاخرة والحياة الروحانية. مقرنا في دبي، نخدم الإمارات العربية المتحدة.',
-      services: ['مشاهدة خاصة', 'استفسارات واتساب', 'الشحن داخل الإمارات'],
-      newsletter: 'انضم إلى قائمتنا للحصول على الإصدارات الحصرية والوصول الجديد.',
-      rights: '© 2025 أورا جيمز — auragems.ae'
+    footer: {
+      brand: 'لگژری انٹیریئرز اور روحانی زندگی کے لیے نایاب قدرتی قیمتی پتھر۔ دبئی میں واقع، یو اے ای کی خدمت میں۔',
+      services: ['پرائیویٹ ویونگ', 'واٹس ایپ استفسارات', 'یو اے ای میں شپنگ'],
+      newsletter: 'خصوصی ریلیزز اور نئی آمد کے لیے ہماری فہرست میں شامل ہوں۔',
+      rights: '© 2025 اورا جیمز — auragems.ae'
     }
   }
 };
