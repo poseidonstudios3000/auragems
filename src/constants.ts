@@ -124,6 +124,13 @@ export const PRODUCTS: Product[] = [
 export const TRANSLATIONS = {
   en: {
     nav: { about: 'About', shop: 'Shop', collections: 'Collections', contact: 'Contact' },
+    scroll: 'SCROLL',
+    ourPromise: 'OUR PROMISE',
+    ourHeritage: 'OUR HERITAGE',
+    certified: 'Certified',
+    authenticityBadge: 'AUTHENTICITY\nGUARANTEED',
+    priceOnDemand: 'Price on Demand',
+    highlightLabels: { natural: '100%', location: 'DUBAI', certified: 'CERTIFIED' },
     hero: {
       badge: 'LUXURY NATURAL GEMSTONES',
       titleLine1: 'THE ART OF EARTH',
@@ -164,6 +171,13 @@ export const TRANSLATIONS = {
   },
   ur: {
     nav: { about: 'ہمارے بارے میں', shop: 'شاپ', collections: 'کلیکشنز', contact: 'رابطہ کریں' },
+    scroll: 'سکرول',
+    ourPromise: 'ہمارا وعدہ',
+    ourHeritage: 'ہماری وراثت',
+    certified: 'تصدیق شدہ',
+    authenticityBadge: 'اصلیت کی\nضمانت',
+    priceOnDemand: 'قیمت درخواست پر',
+    highlightLabels: { natural: '100%', location: 'دبئی', certified: 'تصدیق شدہ' },
     hero: {
       badge: 'قدرتی قیمتی پتھر',
       titleLine1: 'زمین کا فن',
@@ -204,6 +218,13 @@ export const TRANSLATIONS = {
   },
   de: {
     nav: { about: 'Über uns', shop: 'Shop', collections: 'Kollektionen', contact: 'Kontakt' },
+    scroll: 'SCROLLEN',
+    ourPromise: 'UNSER VERSPRECHEN',
+    ourHeritage: 'UNSER ERBE',
+    certified: 'Zertifiziert',
+    authenticityBadge: 'ECHTHEIT\nGARANTIERT',
+    priceOnDemand: 'Preis auf Anfrage',
+    highlightLabels: { natural: '100%', location: 'DUBAI', certified: 'ZERTIFIZIERT' },
     hero: {
       badge: 'LUXUS-NATUREDELSTEINE',
       titleLine1: 'DIE KUNST DER ERDE',
@@ -244,6 +265,13 @@ export const TRANSLATIONS = {
   },
   ru: {
     nav: { about: 'О нас', shop: 'Магазин', collections: 'Коллекции', contact: 'Контакты' },
+    scroll: 'ЛИСТАТЬ',
+    ourPromise: 'НАШЕ ОБЕЩАНИЕ',
+    ourHeritage: 'НАШЕ НАСЛЕДИЕ',
+    certified: 'Сертифицировано',
+    authenticityBadge: 'ПОДЛИННОСТЬ\nГАРАНТИРОВАНА',
+    priceOnDemand: 'Цена по запросу',
+    highlightLabels: { natural: '100%', location: 'ДУБАЙ', certified: 'СЕРТИФИЦИРОВАНО' },
     hero: {
       badge: 'РОСКОШНЫЕ НАТУРАЛЬНЫЕ КАМНИ',
       titleLine1: 'ИСКУССТВО ЗЕМЛИ',
@@ -284,6 +312,13 @@ export const TRANSLATIONS = {
   },
   ar: {
     nav: { about: 'عن الشركة', shop: 'المتجر', collections: 'المجموعات', contact: 'اتصل بنا' },
+    scroll: 'مرّر',
+    ourPromise: 'وعدنا',
+    ourHeritage: 'تراثنا',
+    certified: 'معتمد',
+    authenticityBadge: 'الأصالة\nمضمونة',
+    priceOnDemand: 'السعر عند الطلب',
+    highlightLabels: { natural: '100%', location: 'دبي', certified: 'معتمد' },
     hero: {
       badge: 'أحجار كريمة طبيعية فاخرة',
       titleLine1: 'فَنُّ الأَرْض',

@@ -134,7 +134,7 @@ export default function App() {
           className="absolute bottom-6 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
         >
           <div className="w-[1px] h-12 bg-white" />
-          <span className="text-[8px] font-black tracking-widest uppercase text-white">SCROLL</span>
+          <span className="text-[8px] font-black tracking-widest uppercase text-white">{t.scroll}</span>
         </motion.div>
       </section>
 
@@ -147,7 +147,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-6 uppercase">OUR PROMISE</p>
+            <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-6 uppercase">{t.ourPromise}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x md:divide-aura-deep/10 dark:md:divide-white/10">
@@ -219,7 +219,7 @@ export default function App() {
                   <h4 className="text-xl sm:text-2xl font-display font-black uppercase leading-tight group-hover:text-aura-gold transition-colors mb-3 text-aura-deep dark:text-white">{product.name[lang]}</h4>
                   <p className="text-[10px] font-black tracking-widest text-aura-deep/30 dark:text-white/30 uppercase mb-1">{product.category[lang]}</p>
                   <p className="text-[9px] text-aura-deep/40 dark:text-white/40 uppercase tracking-widest mb-6">{product.specs}</p>
-                  <span className="text-aura-gold font-black tracking-wide text-xs uppercase">{product.price}</span>
+                  <span className="text-aura-gold font-black tracking-wide text-xs uppercase">{t.priceOnDemand}</span>
                 </div>
               </motion.div>
             ))}
@@ -236,7 +236,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center lg:text-left"
           >
-            <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-8 sm:mb-12 uppercase">OUR HERITAGE</p>
+            <p className="text-aura-gold text-[10px] font-black tracking-[0.5em] mb-8 sm:mb-12 uppercase">{t.ourHeritage}</p>
             <h2 className="text-4xl sm:text-6xl lg:text-9xl font-display font-black uppercase leading-[0.85] mb-12 sm:mb-16 tracking-tighter text-aura-deep dark:text-white transition-colors duration-500">
               {t.about.title}
             </h2>
@@ -247,7 +247,7 @@ export default function App() {
               {t.about.highlights.map((highlight, i) => (
                 <div key={i}>
                   <p className="text-3xl sm:text-4xl font-display font-black mb-2 text-aura-gold uppercase">
-                    {highlight.includes('%') ? '100%' : highlight.includes('Dubai') || highlight.includes('دبئی') ? 'DUBAI' : 'CERTIFIED'}
+                    {i === 0 ? t.highlightLabels.natural : i === 1 ? t.highlightLabels.certified : t.highlightLabels.location}
                   </p>
                   <p className="text-[9px] sm:text-[10px] font-black tracking-widest text-aura-deep/30 dark:text-white/30 uppercase transition-colors duration-500">{highlight}</p>
                 </div>
@@ -274,8 +274,8 @@ export default function App() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-6 sm:-bottom-10 -right-6 sm:-right-10 bg-aura-gold text-aura-deep p-6 sm:p-10 rounded-[20px] sm:rounded-[40px] shadow-2xl"
             >
-              <p className="text-[9px] sm:text-[10px] font-black tracking-widest uppercase mb-2">Certified</p>
-              <p className="text-lg sm:text-2xl font-display font-black leading-none">AUTHENTICITY<br/>GUARANTEED</p>
+              <p className="text-[9px] sm:text-[10px] font-black tracking-widest uppercase mb-2">{t.certified}</p>
+              <p className="text-lg sm:text-2xl font-display font-black leading-none whitespace-pre-line">{t.authenticityBadge}</p>
             </motion.div>
           </motion.div>
         </div>
