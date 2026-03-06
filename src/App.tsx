@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Globe, Sun, Moon, Instagram, ShieldCheck, Gem, Award } from 'lucide-react';
 import { PRODUCTS, TRANSLATIONS, type Language } from './constants';
@@ -13,9 +13,21 @@ export default function App() {
   const [lang, setLang] = useState<Language>('en');
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPastHero(window.scrollY > window.innerHeight * 0.5);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const t = TRANSLATIONS[lang];
   const isRtl = lang === 'ur' || lang === 'ar';
+
+  // Header uses dark text in light mode when scrolled past the hero
+  const headerLight = scrolledPastHero && !isDark;
 
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
@@ -32,34 +44,34 @@ export default function App() {
   return (
     <div className={`min-h-screen ${isRtl ? 'rtl' : ''} ${isDark ? 'dark' : ''} selection:bg-aura-gold selection:text-aura-deep bg-aura-cream dark:bg-aura-deep transition-colors duration-500`}>
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-6 flex justify-between items-center pointer-events-none bg-white/10 dark:bg-aura-deep/40 backdrop-blur-xl border-b border-white/10 dark:border-white/5 transition-colors duration-500">
+      <header className={`fixed top-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-6 flex justify-between items-center pointer-events-none backdrop-blur-xl border-b transition-colors duration-500 ${headerLight ? 'bg-white/70 border-aura-deep/5' : 'bg-white/10 dark:bg-aura-deep/40 border-white/10 dark:border-white/5'}`}>
         <div className="pointer-events-auto">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-lg sm:text-2xl font-display font-black tracking-[0.4em] cursor-pointer text-white drop-shadow-sm"
+            className={`text-lg sm:text-2xl font-display font-black tracking-[0.4em] cursor-pointer transition-colors duration-500 ${headerLight ? 'text-aura-deep' : 'text-white drop-shadow-sm'}`}
           >
             AURA GEMS
           </motion.h1>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
-          <a href="https://www.instagram.com/auragemsuae" target="_blank" rel="noopener noreferrer" className="pill-button flex items-center !p-2.5 sm:!p-3 !bg-white/10 !text-white !border-white/15 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold">
+          <a href="https://www.instagram.com/auragemsuae" target="_blank" rel="noopener noreferrer" className={`pill-button flex items-center !p-2.5 sm:!p-3 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold transition-colors duration-500 ${headerLight ? '!bg-aura-deep/5 !text-aura-deep !border-aura-deep/10' : '!bg-white/10 !text-white !border-white/15'}`}>
             <Instagram size={14} />
           </a>
-          <a href="https://www.tiktok.com/@auragemsuae" target="_blank" rel="noopener noreferrer" className="pill-button flex items-center !p-2.5 sm:!p-3 !bg-white/10 !text-white !border-white/15 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold">
+          <a href="https://www.tiktok.com/@auragemsuae" target="_blank" rel="noopener noreferrer" className={`pill-button flex items-center !p-2.5 sm:!p-3 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold transition-colors duration-500 ${headerLight ? '!bg-aura-deep/5 !text-aura-deep !border-aura-deep/10' : '!bg-white/10 !text-white !border-white/15'}`}>
             <TikTokIcon size={14} />
           </a>
           <button
             onClick={() => setIsDark(!isDark)}
-            className="pill-button flex items-center gap-2 !px-3 sm:!px-4 !bg-white/10 !text-white !border-white/15 hover:!bg-white/20"
+            className={`pill-button flex items-center gap-2 !px-3 sm:!px-4 transition-colors duration-500 ${headerLight ? '!bg-aura-deep/5 !text-aura-deep !border-aura-deep/10 hover:!bg-aura-deep/10' : '!bg-white/10 !text-white !border-white/15 hover:!bg-white/20'}`}
           >
             {isDark ? <Sun size={14} /> : <Moon size={14} />}
           </button>
           <div className="relative">
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="pill-button flex items-center gap-2 !px-3 sm:!px-5 !bg-white/10 !text-white !border-white/15 hover:!bg-white/20"
+              className={`pill-button flex items-center gap-2 !px-3 sm:!px-5 transition-colors duration-500 ${headerLight ? '!bg-aura-deep/5 !text-aura-deep !border-aura-deep/10 hover:!bg-aura-deep/10' : '!bg-white/10 !text-white !border-white/15 hover:!bg-white/20'}`}
             >
               <Globe size={14} />
               <span>{lang.toUpperCase()}</span>
@@ -70,13 +82,13 @@ export default function App() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full mt-2 right-0 bg-white/15 backdrop-blur-xl border border-white/15 p-2 min-w-[100px] flex flex-col gap-1 rounded-2xl overflow-hidden"
+                  className={`absolute top-full mt-2 right-0 backdrop-blur-xl border p-2 min-w-[100px] flex flex-col gap-1 rounded-2xl overflow-hidden ${headerLight ? 'bg-white/90 border-aura-deep/10' : 'bg-white/15 border-white/15'}`}
                 >
                   {languages.map(l => (
                     <button
                       key={l.code}
                       onClick={() => { setLang(l.code); setLangMenuOpen(false); }}
-                      className={`text-[10px] font-bold px-4 py-2 rounded-xl transition-all text-white ${lang === l.code ? 'bg-white/20' : 'hover:bg-white/10'}`}
+                      className={`text-[10px] font-bold px-4 py-2 rounded-xl transition-all ${headerLight ? `text-aura-deep ${lang === l.code ? 'bg-aura-deep/10' : 'hover:bg-aura-deep/5'}` : `text-white ${lang === l.code ? 'bg-white/20' : 'hover:bg-white/10'}`}`}
                     >
                       {l.label}
                     </button>
