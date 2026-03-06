@@ -99,7 +99,6 @@ export const TRANSLATIONS = {
     footer: {
       brand: 'Rare natural gemstones for luxury interiors and spiritual living. Based in Dubai, serving the UAE.',
       services: ['Private Viewing', 'WhatsApp Inquiries', 'Shipping Within UAE'],
-      newsletter: 'Join our list for exclusive drops and new arrivals.',
       rights: '© 2025 AURA GEMS — auragems.ae'
     }
   },
@@ -140,7 +139,6 @@ export const TRANSLATIONS = {
     footer: {
       brand: 'لگژری انٹیریئرز اور روحانی زندگی کے لیے نایاب قدرتی قیمتی پتھر۔ دبئی میں واقع، یو اے ای کی خدمت میں۔',
       services: ['پرائیویٹ ویونگ', 'واٹس ایپ استفسارات', 'یو اے ای میں شپنگ'],
-      newsletter: 'خصوصی ریلیزز اور نئی آمد کے لیے ہماری فہرست میں شامل ہوں۔',
       rights: '© 2025 اورا جیمز — auragems.ae'
     }
   }

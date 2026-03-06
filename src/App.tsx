@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { Globe, Sun, Moon, Instagram, Facebook, Twitter, ArrowUpRight, ShieldCheck, Gem, Award } from 'lucide-react';
+import { Globe, Sun, Moon, Instagram, ShieldCheck, Gem, Award } from 'lucide-react';
 import { PRODUCTS, TRANSLATIONS, type Language } from './constants';
+
+const TikTokIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.19 8.19 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.14z"/>
+  </svg>
+);
 
 export default function App() {
   const [lang, setLang] = useState<Language>('en');
@@ -35,6 +41,12 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
+          <a href="https://www.instagram.com/auragemsuae" target="_blank" rel="noopener noreferrer" className="pill-button flex items-center !p-2.5 sm:!p-3 !bg-white/10 !text-white !border-white/15 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold">
+            <Instagram size={14} />
+          </a>
+          <a href="https://www.tiktok.com/@auragemsuae" target="_blank" rel="noopener noreferrer" className="pill-button flex items-center !p-2.5 sm:!p-3 !bg-white/10 !text-white !border-white/15 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold">
+            <TikTokIcon size={14} />
+          </a>
           <button
             onClick={() => setIsDark(!isDark)}
             className="pill-button flex items-center gap-2 !px-3 sm:!px-4 !bg-white/10 !text-white !border-white/15 hover:!bg-white/20"
@@ -267,56 +279,28 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-aura-cream dark:bg-aura-deep py-16 sm:py-24 px-6 sm:px-8 border-t border-aura-deep/5 dark:border-white/5 transition-colors duration-500">
+      <footer className="bg-aura-cream dark:bg-aura-deep py-10 sm:py-14 px-6 sm:px-8 border-t border-aura-deep/5 dark:border-white/5 transition-colors duration-500">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-16 mb-16 sm:mb-20">
-            <div className="lg:col-span-1">
-              <h2 className="text-2xl sm:text-3xl font-display font-black tracking-[0.4em] mb-8 sm:mb-12 text-aura-deep dark:text-white transition-colors duration-500">AURA GEMS</h2>
-              <p className="text-sm text-aura-deep/40 dark:text-white/40 leading-relaxed mb-8 sm:mb-12 max-w-xs transition-colors duration-500">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8 sm:mb-10">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+              <h2 className="text-xl sm:text-2xl font-display font-black tracking-[0.4em] text-aura-deep dark:text-white transition-colors duration-500">AURA GEMS</h2>
+              <p className="text-xs text-aura-deep/40 dark:text-white/40 leading-relaxed max-w-xs text-center sm:text-left transition-colors duration-500">
                 {t.footer.brand}
               </p>
-              <div className="flex gap-4">
-                <a href="#" className="pill-button !p-3 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Instagram size={16} /></a>
-                <a href="#" className="pill-button !p-3 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Facebook size={16} /></a>
-                <a href="#" className="pill-button !p-3 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Twitter size={16} /></a>
-              </div>
             </div>
-
-            <div>
-              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 text-aura-deep/30 dark:text-white/30 transition-colors duration-500">Navigation</h4>
-              <ul className="flex flex-col gap-4 sm:gap-6 text-[11px] font-bold uppercase tracking-widest text-aura-deep dark:text-white transition-colors duration-500">
+            <div className="flex items-center gap-6">
+              <ul className="flex gap-6 text-[11px] font-bold uppercase tracking-widest text-aura-deep dark:text-white transition-colors duration-500">
                 <li><a href="#about" className="luxury-underline">{t.nav.about}</a></li>
                 <li><a href="#shop" className="luxury-underline">{t.nav.shop}</a></li>
-                <li><a href="#contact" className="luxury-underline">{t.nav.contact}</a></li>
               </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 text-aura-deep/30 dark:text-white/30 transition-colors duration-500">Services</h4>
-              <ul className="flex flex-col gap-4 sm:gap-6 text-[11px] font-bold uppercase tracking-widest text-aura-deep dark:text-white transition-colors duration-500">
-                {t.footer.services.map((service, i) => (
-                  <li key={i}><a href="#" className="luxury-underline">{service}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[10px] font-black tracking-widest uppercase mb-8 sm:mb-12 text-aura-deep/30 dark:text-white/30 transition-colors duration-500">Newsletter</h4>
-              <p className="text-sm text-aura-deep/40 dark:text-white/40 mb-8 sm:mb-10 transition-colors duration-500">{t.footer.newsletter}</p>
-              <form className="flex border-b border-aura-deep/10 dark:border-white/10 pb-4 group focus-within:border-aura-gold transition-colors">
-                <input
-                  type="email"
-                  placeholder="EMAIL ADDRESS"
-                  className="bg-transparent text-[10px] font-black tracking-widest w-full outline-none text-aura-deep dark:text-white placeholder:text-aura-deep/30 dark:placeholder:text-white/30 transition-colors duration-500"
-                />
-                <button type="submit" className="text-aura-deep dark:text-white hover:text-aura-gold transition-colors">
-                  <ArrowUpRight size={20} />
-                </button>
-              </form>
+              <div className="flex gap-3">
+                <a href="https://www.instagram.com/auragemsuae" target="_blank" rel="noopener noreferrer" className="pill-button !p-2.5 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><Instagram size={14} /></a>
+                <a href="https://www.tiktok.com/@auragemsuae" target="_blank" rel="noopener noreferrer" className="pill-button !p-2.5 !bg-aura-deep/5 dark:!bg-white/10 !text-aura-deep dark:!text-white !border-aura-deep/10 dark:!border-white/10 hover:!bg-aura-gold hover:!text-aura-deep hover:!border-aura-gold"><TikTokIcon size={14} /></a>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center pt-12 sm:pt-16 border-t border-aura-deep/5 dark:border-white/5 text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-aura-deep/20 dark:text-white/20 gap-4 text-center transition-colors duration-500">
+          <div className="flex flex-col md:flex-row justify-between items-center pt-6 sm:pt-8 border-t border-aura-deep/5 dark:border-white/5 text-[9px] sm:text-[10px] font-black tracking-[0.3em] text-aura-deep/20 dark:text-white/20 gap-3 text-center transition-colors duration-500">
             <p>{t.footer.rights}</p>
             <p>AURAGEMS.AE</p>
           </div>
