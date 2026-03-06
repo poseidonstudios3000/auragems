@@ -15,7 +15,7 @@ export default function App() {
   const [isDark, setIsDark] = useState(false);
 
   const t = TRANSLATIONS[lang];
-  const isRtl = lang === 'ur' || lang === 'ur';
+  const isRtl = lang === 'ur' || lang === 'ar';
 
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
@@ -23,6 +23,9 @@ export default function App() {
 
   const languages: { code: Language; label: string }[] = [
     { code: 'en', label: 'EN' },
+    { code: 'de', label: 'DE' },
+    { code: 'ru', label: 'RU' },
+    { code: 'ar', label: 'AR' },
     { code: 'ur', label: 'UR' },
   ];
 
